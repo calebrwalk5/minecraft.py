@@ -79,6 +79,7 @@ STONE = tex_coords((2, 1), (2, 1), (2, 1))
 WOOD = tex_coords((0, 0), (0, 0), (0, 0))
 GLASS = tex_coords((0, 1), (0, 1), (0, 1))
 ROCK = tex_coords((0, 2), (0, 2), (0, 2))
+IRON = tex_coords((1, 2), (1, 2), (1, 2))
 
 FACES = [
     ( 0, 1, 0),
@@ -156,8 +157,11 @@ class Model(object):
             for z in xrange(-n, n + 1, s):
                 # create a layer stone, rocks, and grass everywhere.
                 self.add_block((x, y - 2, z), GRASS, immediate=False)
-                self.add_block((x, y - 4, z), STONE, immediate=False)
+                self.add_block((x, y - 7, z), STONE, immediate=False)
                 self.add_block((x, y - 3, z), ROCK, immediate=False)
+                self.add_block((x, y - 5, z), IRON, immediate=False)
+                self.add_block((x, y - 4, z), ROCK, immediate=False)
+                self.add_block((x, y - 6, z), GLASS, immediate=False)
                 if x in (-n, n) or z in (-n, n):
                     # create outer walls.
                     for dy in xrange(-2, 3):
@@ -172,7 +176,7 @@ class Model(object):
             h = random.randint(1, 6)  # height of the hill
             s = random.randint(4, 8)  # 2 * s is the side length of the hill
             d = 1  # how quickly to taper off the hills
-            t = random.choice([GRASS, SAND, BRICK,])
+            t = random.choice([GRASS, SAND, BRICK])
             for y in xrange(c, c + h):
                 for x in xrange(a - s, a + s + 1):
                     for z in xrange(b - s, b + s + 1):
@@ -182,6 +186,25 @@ class Model(object):
                             continue
                         self.add_block((x, y, z), t, immediate=False)
                 s -= d  # decrement side lenth so hills taper off
+
+
+        for _ in xrange(120): # Make a mountain
+            a = random.randint(-10, 20)  # x position
+            b = random.randint(20, 20)  # z position
+            c = -1  # base of the hill
+            h = random.randint(3, 18)  # height
+            s = random.randint(5, 10)  # 2 * s is the side length of the mountain
+            d = 1  # how quickly to taper off the mountain peaks
+            t = random.choice([ROCK])
+            for y in xrange(c, c + h):
+                for x in xrange(a - s, a + s + 1):
+                    for z in xrange(b - s, b + s + 1):
+                        if (x - a) ** 2 + (z - b) ** 2 > (s + 1) ** 2:
+                            continue
+                        if (x - 0) ** 2 + (z - 0) ** 2 < 5 ** 2:
+                            continue
+                        self.add_block((x, y, z), t, immediate=False)
+                s -= d  # decrement side lenth so peaks taper off
 
     def hit_test(self, position, vector, max_distance=8):
         """ Line of sight search from current position. If a block is
@@ -454,7 +477,7 @@ class Window(pyglet.window.Window):
         self.dy = 0
 
         # A list of blocks the player can place. Hit num keys to cycle. Wood is 1, grass is 2, sand is 3, brick is 4, and glass is 5. Rock is 6.
-        self.inventory = [WOOD, GRASS, SAND, BRICK, GLASS, ROCK]
+        self.inventory = [WOOD, GRASS, SAND, BRICK, GLASS, ROCK, IRON]
 
         # The current block the user can place. Hit num keys to cycle.
         self.block = self.inventory[0]
