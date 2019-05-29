@@ -16,8 +16,7 @@ WINDOWS INSTALLATION:
 - open command prompt, type ‘cd’ and paste the path copied in previous step and add Scripts\ to the path
 - you're done!
 
-or you could do this https://www.google.com/search?q=pyglet+windows+install&rlz=1CAPPDO_enUS851&oq=pyglet+windows&aqs=chrome.2.69i57j69i60j0l4.4703j0j4&sourceid=chrome&ie=UTF-8
-
+or you could do this https://bit.ly/30QQmo1
 CONTROLS:
 - WASD to move around
 - Mouse to look around
