@@ -69,7 +69,7 @@ def tex_coords(top, bottom, side):
     result.extend(side * 4)
     return result
 
-
+`
 TEXTURE_PATH = 'texture.png'
 
 GRASS = tex_coords((1, 0), (1, 0), (1, 0))
@@ -79,7 +79,6 @@ STONE = tex_coords((2, 1), (2, 1), (2, 1))
 WOOD = tex_coords((0, 0), (0, 0), (0, 0))
 GLASS = tex_coords((0, 1), (0, 1), (0, 1))
 ROCK = tex_coords((0, 2), (0, 2), (0, 2))
-IRON = tex_coords((1, 2), (1, 2), (1, 2))
 
 FACES = [
     ( 0, 1, 0),
@@ -159,7 +158,7 @@ class Model(object):
                 self.add_block((x, y - 2, z), GRASS, immediate=False)
                 self.add_block((x, y - 7, z), STONE, immediate=False)
                 self.add_block((x, y - 3, z), ROCK, immediate=False)
-                self.add_block((x, y - 5, z), IRON, immediate=False)
+                self.add_block((x, y - 5, z), ROCK, immediate=False)
                 self.add_block((x, y - 4, z), ROCK, immediate=False)
                 self.add_block((x, y - 6, z), GLASS, immediate=False)
                 if x in (-n, n) or z in (-n, n):
