@@ -10,7 +10,7 @@ After that run minecraft.py in Python
 WINDOWS INSTALLATION:
 
 - open cmd
-- pip install pyglet
+- type pip install pyglet
 - search for IDLE in start menu
 - right click on it and open file location
 - Open command prompt, type ‘cd’ and paste the path copied in previous step and add Scripts\ to the path
